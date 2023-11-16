@@ -7,8 +7,24 @@ const { increment } = counterStore;
 </script>
 
 <template>
-  <div>
-    <h1>My first web app with nuxt</h1>
+  <div class="text-center">
+    <h1 class="text-6xl pb-6 dark:text-white">PokeApi UI</h1>
+
+    <!-- text field search -->
+    <div class="">
+      <input
+        type="text"
+        class="w-2/5 m-2 px-4 py-2 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-transparent"
+        placeholder="Search Pokemon by name"
+      />
+      <button
+        class="outline outline-2 rounded outline-gray-500 px-2 py-1 bg-gray-200 hover:bg-gray-400"
+        type="button"
+      >
+        search
+      </button>
+    </div>
+
     <p>Counter: {{ count }}</p>
 
     <button
