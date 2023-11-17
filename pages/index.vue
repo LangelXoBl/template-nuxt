@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { useCounterStore } from "#imports";
+// import { useCounterStore } from "#imports";
+interface Pokemon {
+  name: string;
+  url: string;
+}
 
-const counterStore = useCounterStore();
-const count = computed(() => counterStore.count);
-const { increment } = counterStore;
+// const counterStore = useCounterStore();
+// const count = computed(() => counterStore.count);
+// const { increment } = counterStore;
+
+// get pokemons from pokeApi
+const pokemons = ref<Pokemon[]>([]);
+const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+const data = (await response.json()) as { results: Pokemon[] };
+console.log(data.results);
+pokemons.value = data.results;
 </script>
 
 <template>
@@ -24,18 +35,29 @@ const { increment } = counterStore;
         search
       </button>
     </div>
-
-    <p>Counter: {{ count }}</p>
-
-    <button
-      class="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
-      @click="increment"
-    >
-      <span
-        class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0"
-      >
-        increment
-      </span>
-    </button>
+    <section>
+      <!-- list pokemons by pokeApi -->
+      <ul class="grid grid-cols-4 gap-4">
+        <li
+          v-for="pokemon in pokemons"
+          :key="pokemon.name"
+          class="flex flex-col items-center justify-center p-4 text-center bg-white rounded-lg shadow-lg dark:bg-gray-800"
+        >
+          <!-- <img
+            :src="pokemon.sprites.front_default"
+            :alt="pokemon.name"
+            class="w-32 h-32 rounded-full"
+          /> -->
+          <h2
+            class="mt-4 mb-2 text-xl font-medium text-gray-700 dark:text-white"
+          >
+            {{ pokemon.name }}
+          </h2>
+          <!-- <p class="text-sm text-gray-400 dark:text-gray-300">
+            {{ pokemon.types[0].type.name }}
+          </p> -->
+        </li>
+      </ul>
+    </section>
   </div>
 </template>
