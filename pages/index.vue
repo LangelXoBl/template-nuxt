@@ -1,25 +1,32 @@
 <script setup lang="ts">
 // import { useCounterStore } from "#imports";
-interface Pokemon {
-  name: string;
-  url: string;
+// interface by product for fakestoreapi
+interface IRating {
+  rate: number;
+  count: number;
 }
 
-// const counterStore = useCounterStore();
-// const count = computed(() => counterStore.count);
-// const { increment } = counterStore;
+interface IProduct {
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
+  rating: IRating;
+}
 
-// get pokemons from pokeApi
-const pokemons = ref<Pokemon[]>([]);
-const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
-const data = (await response.json()) as { results: Pokemon[] };
-console.log(data.results);
-pokemons.value = data.results;
+const products = ref<IProduct[]>([]);
+// se renderiza en el server
+const { data } = await useFetch<IProduct[]>(
+  "https://fakestoreapi.com/products",
+);
+if (data.value) products.value = data.value;
 </script>
 
 <template>
   <div class="text-center">
-    <h1 class="text-6xl pb-6 dark:text-white">PokeApi UI</h1>
+    <h1 class="text-6xl pb-6 dark:text-white">FakeStore API - UI</h1>
 
     <!-- text field search -->
     <div class="">
@@ -39,23 +46,23 @@ pokemons.value = data.results;
       <!-- list pokemons by pokeApi -->
       <ul class="grid grid-cols-4 gap-4">
         <li
-          v-for="pokemon in pokemons"
-          :key="pokemon.name"
+          v-for="product in products"
+          :key="product.id"
           class="flex flex-col items-center justify-center p-4 text-center bg-white rounded-lg shadow-lg dark:bg-gray-800"
         >
-          <!-- <img
-            :src="pokemon.sprites.front_default"
-            :alt="pokemon.name"
+          <img
+            :src="product.image"
+            :alt="product.title"
             class="w-32 h-32 rounded-full"
-          /> -->
+          />
           <h2
             class="mt-4 mb-2 text-xl font-medium text-gray-700 dark:text-white"
           >
-            {{ pokemon.name }}
+            {{ product.title }}
           </h2>
-          <!-- <p class="text-sm text-gray-400 dark:text-gray-300">
-            {{ pokemon.types[0].type.name }}
-          </p> -->
+          <p class="text-sm text-gray-400 dark:text-gray-300">
+            {{ product.category }}
+          </p>
         </li>
       </ul>
     </section>

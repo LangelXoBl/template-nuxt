@@ -77,7 +77,7 @@ const mobileMenuOpen = ref(false);
           <span class="sr-only">Your Company</span>
           <img
             class="h-12 w-auto"
-            src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png"
+            src="https://fakestoreapi.com/icons/logo.png"
             alt=""
           />
         </NuxtLink>
