@@ -7,9 +7,10 @@ export default <Partial<Config>>{
   theme: {
     extend: {},
     fontFamily: {
-      sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+      sans: ["DM Sans", ...defaultTheme.fontFamily.sans],
       nunito: ["Nunito", ...defaultTheme.fontFamily.sans],
       inter: ["Inter", ...defaultTheme.fontFamily.sans],
+      dm: ["DM Sans", ...defaultTheme.fontFamily.sans],
     },
   },
   plugins: [],

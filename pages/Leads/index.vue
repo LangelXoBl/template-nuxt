@@ -1,9 +1,11 @@
 <template>
   <div class="">
-    <p class="">Estos son todos tus leads (Nunito)</p>
-    <p class="font-inter">Estos son todos tus leads (Inter)</p>
-    <div class="mt-10 flex">
-      <LeadCardComponent @click="openModal()"></LeadCardComponent>
+    <div>
+      <p class="">Estos son todos tus leads (Nunito)</p>
+      <p class="font-inter">Estos son todos tus leads (Inter)</p>
+      <div class="mt-10 flex">
+        <LeadCardComponent @click="openModal()"></LeadCardComponent>
+      </div>
     </div>
     <ModalComponent :modal="modal">
       <div class="bg-white w-full max-w-md h-auto rounded-lg">
