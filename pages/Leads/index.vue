@@ -1,8 +1,9 @@
 <template>
   <div class="">
     <div>
-      <p class="">Estos son todos tus leads (Nunito)</p>
+      <p class="font-nunito">Estos son todos tus leads (Nunito)</p>
       <p class="font-inter">Estos son todos tus leads (Inter)</p>
+      <p class="">Estos son todos tus leads (DM Sans)</p>
       <div class="mt-10 flex">
         <LeadCardComponent @click="openModal()"></LeadCardComponent>
       </div>
