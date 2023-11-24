@@ -25,9 +25,7 @@
       </div>
       <div class="flex overflow-hidden">
         <div
-          :class="
-            tabSelected == 1 ? 'flex translate-x-1/2' : '-translate-x-full'
-          "
+          :class="tabSelected === 1 ? ' translate-x-1/2' : ' -translate-x-full'"
           class="mx-auto max-w-5xl bg-white w-full flex justify-center items-center duration-500"
         >
           <div class="rounded-lg border shadow-2xl flex w-full">
@@ -43,7 +41,15 @@
               <form action="" @submit="checkForm">
                 <div class="flex flex-col gap-y-5 w-full mt-6">
                   <div class="flex flex-col-reverse">
+                    <p
+                      v-if="messageErrorInputEmail"
+                      class="text-xs text-red-600 mt-1 pl-1"
+                    >
+                      {{ messageErrorInputEmail }}
+                    </p>
                     <input
+                      ref="inputEmail"
+                      v-model="email"
                       class="peer/input mt-2 font-light outline-none text-sm border border-gray-400 px-3 py-2 leading-8 w-full rounded-md focus:border-purple-700"
                       type="text"
                       required
@@ -52,13 +58,21 @@
                       name="email"
                     />
                     <label
-                      class="px-1 text-gray-900 text-sm font-semibold peer-focus/input:text-purple-800"
+                      class="px-1 text-gray-900 text-sm font-semibold peer-focus/input:text-purple-900"
                       for="email"
                       >Correo electronico:</label
                     >
                   </div>
                   <div class="flex flex-col-reverse">
+                    <p
+                      v-if="messageErrorInputPassword"
+                      class="text-xs text-red-600 mt-1 pl-1"
+                    >
+                      {{ messageErrorInputPassword }}
+                    </p>
                     <input
+                      ref="inputPassword"
+                      v-model="password"
                       class="peer/input mt-2 outline-none text-sm font-normal border border-gray-400 px-3 py-2 leading-8 w-full rounded-md focus:border-purple-700"
                       type="password"
                       name="password"
@@ -67,7 +81,7 @@
                       placeholder="Ingresa tu contraseña"
                     />
                     <label
-                      class="px-1 text-gray-900 text-sm font-semibold peer-focus/input:text-purple-800"
+                      class="px-1 text-gray-900 text-sm font-semibold peer-focus/input:text-purple-900"
                       for="password"
                       >Contraseña:</label
                     >
@@ -75,7 +89,7 @@
                 </div>
                 <div class="mt-8">
                   <input
-                    type="button"
+                    type="submit"
                     value="Iniciar sesión"
                     class="bg-purple-700 hover:bg-purple-800 duration-200 w-full px-3 py-2 font-medium text-white rounded-md cursor-pointer"
                   />
@@ -89,10 +103,9 @@
             />
           </div>
         </div>
+
         <div
-          :class="
-            tabSelected == 2 ? 'flex -translate-x-1/2' : 'translate-x-full'
-          "
+          :class="tabSelected === 2 ? ' -translate-x-1/2' : 'translate-x-full'"
           class="mx-auto max-w-5xl w-full flex justify-center items-center duration-500"
         >
           <div class="rounded-lg border shadow-2xl flex w-full">
@@ -150,12 +163,40 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from "vue";
 definePageMeta({
   layout: "login-layout",
 });
 
-function checkForm() {
-  console.log(1);
+const email = ref("");
+const inputEmail = ref<HTMLInputElement | null>(null);
+const password = ref("");
+const inputPassword = ref<HTMLInputElement | null>(null);
+const messageErrorInputEmail = ref("");
+const messageErrorInputPassword = ref("");
+
+function checkForm(e: Event): boolean {
+  e.preventDefault();
+  if (!validateInputs()) return false;
+
+  navigateTo("/leads");
+  return true;
+}
+
+function validateInputs(): boolean {
+  if (inputEmail.value && inputEmail.value.value.length < 4) {
+    messageErrorInputEmail.value = "Ingresa un correo electronico valido";
+    inputEmail.value.focus();
+    return false;
+  }
+  messageErrorInputEmail.value = "";
+  if (inputPassword.value && inputPassword.value.value.length < 4) {
+    messageErrorInputPassword.value = "Ingresa una contraseña valida";
+    inputPassword.value.focus();
+    return false;
+  }
+  messageErrorInputPassword.value = "";
+  return true;
 }
 
 const tabSelected = ref(1);

@@ -1,11 +1,147 @@
 <template>
   <div class="">
     <div>
-      <p class="font-nunito">Estos son todos tus leads (Nunito)</p>
-      <p class="font-inter">Estos son todos tus leads (Inter)</p>
-      <p class="">Estos son todos tus leads (DM Sans)</p>
-      <div class="mt-10 flex">
-        <LeadCardComponent @click="openModal()"></LeadCardComponent>
+      <p class="text-3xl font-medium">Estos son todos tus leads</p>
+      <div>
+        <p class="leading-6 text-gray-900 font-semibold text-sm">Ver como:</p>
+        <div class="relative">
+          <div>
+            <Icon class="h-7 w-7" name="ph:table"></Icon>
+          </div>
+          <div
+            class="overflow-hidden rounded-lg shadow-lg ring-1 ring-black/5 w-64"
+          >
+            <div class="relative grid gap-8 bg-white p-7 grid-cols-1">
+              <a
+                href="##"
+                class="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500/50"
+                ><div
+                  class="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12"
+                >
+                  <div class="w-12 h-12 flex justify-center items-center bg-purple-100">
+                    <Icon
+                      class="h-8 w-8 text-indigo-700"
+                      name="ph:table"
+                    ></Icon>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-900">Insights</p>
+                  <p class="text-sm text-gray-500">
+                    Measure actions your users take
+                  </p>
+                </div></a
+              ><a
+                href="##"
+                class="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500/50"
+                ><div
+                  class="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12"
+                >
+                  <div>
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="48" height="48" rx="8" fill="#FFEDD5"></rect>
+                      <path
+                        d="M28.0413 20L23.9998 13L19.9585 20M32.0828 27.0001L36.1242 34H28.0415M19.9585 34H11.8755L15.9171 27"
+                        stroke="#FB923C"
+                        stroke-width="2"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M18.804 30H29.1963L24.0001 21L18.804 30Z"
+                        stroke="#FDBA74"
+                        stroke-width="2"
+                      ></path>
+                    </svg>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-900">Automations</p>
+                  <p class="text-sm text-gray-500">
+                    Create your own targeted content
+                  </p>
+                </div></a
+              ><a
+                href="##"
+                class="-m-3 flex items-center rounded-lg p-2 transition duration-150 ease-in-out hover:bg-gray-50 focus:outline-none focus-visible:ring focus-visible:ring-orange-500/50"
+                ><div
+                  class="flex h-10 w-10 shrink-0 items-center justify-center text-white sm:h-12 sm:w-12"
+                >
+                  <div>
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <rect width="48" height="48" rx="8" fill="#FFEDD5"></rect>
+                      <rect
+                        x="13"
+                        y="32"
+                        width="2"
+                        height="4"
+                        fill="#FDBA74"
+                      ></rect>
+                      <rect
+                        x="17"
+                        y="28"
+                        width="2"
+                        height="8"
+                        fill="#FDBA74"
+                      ></rect>
+                      <rect
+                        x="21"
+                        y="24"
+                        width="2"
+                        height="12"
+                        fill="#FDBA74"
+                      ></rect>
+                      <rect
+                        x="25"
+                        y="20"
+                        width="2"
+                        height="16"
+                        fill="#FDBA74"
+                      ></rect>
+                      <rect
+                        x="29"
+                        y="16"
+                        width="2"
+                        height="20"
+                        fill="#FB923C"
+                      ></rect>
+                      <rect
+                        x="33"
+                        y="12"
+                        width="2"
+                        height="24"
+                        fill="#FB923C"
+                      ></rect>
+                    </svg>
+                  </div>
+                </div>
+                <div class="ml-4">
+                  <p class="text-sm font-medium text-gray-900">Reports</p>
+                  <p class="text-sm text-gray-500">Keep track of your growth</p>
+                </div></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-x-6 gap-y-6"
+      >
+        <template v-for="i in 18" :key="i">
+          <LeadCardComponent @click="openModal()"></LeadCardComponent>
+        </template>
       </div>
     </div>
     <ModalComponent :modal="modal">
@@ -46,6 +182,7 @@
           <div class="flex justify-end px-4 py-3 sm:flex sm:px-6">
             <button
               class="bg-white text-gray-900 text-sm font-semibold px-3 py-2 ring-1 ring-inset ring-gray-300 rounded-md"
+              @click="modal = false"
             >
               Cancel
             </button>

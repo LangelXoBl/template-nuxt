@@ -1,7 +1,7 @@
 <template>
   <div>
     <a
-      class="block rounded-lg p-4 shadow-sm shadow-indigo-100 max-w-sm bg-white"
+      class="block rounded-lg p-4 shadow-md border shadow-indigo-100 max-w-sm w-full bg-white"
     >
       <div class="mt-2">
         <div class="flex gap-x-0 items-center">
@@ -44,19 +44,19 @@
         </div>
         <div class="mt-6 grid grid-cols-3 justify-items-center gap-x-3 text-xs">
           <div
-            class="sm:inline-flex sm:shrink-0 w-full sm:items-center sm:justify-center sm:gap-2 hover:bg-indigo-600/10 duration-100 px-3 py-2 rounded-lg"
+            class="flex flex-col sm:flex-row sm:shrink-0 w-full items-center justify-center sm:gap-2 hover:bg-indigo-600/10 duration-100 px-3 py-2 rounded-lg"
           >
             <Icon class="h-5 w-5 text-indigo-700" name="ph:magic-wand"></Icon>
 
             <div class="mt-1.5 sm:mt-0">
-              <p class="text-gray-500">Perfil App</p>
+              <p class="text-gray-500">Perfil app</p>
 
               <p class="font-medium">20%</p>
             </div>
           </div>
 
           <div
-            class="sm:inline-flex sm:shrink-0 w-full sm:items-center sm:justify-center sm:gap-2 hover:bg-indigo-600/10 duration-100 px-3 py-2 rounded-md"
+            class="flex flex-col sm:flex-row sm:shrink-0 w-full items-center justify-center sm:gap-2 hover:bg-indigo-600/10 duration-100 px-3 py-2 rounded-md"
           >
             <Icon class="h-5 w-5 text-indigo-700" name="ph:flower-lotus"></Icon>
 
@@ -68,7 +68,7 @@
           </div>
 
           <div
-            class="sm:inline-flex sm:shrink-0 w-full sm:items-center sm:justify-center sm:gap-2 hover:bg-indigo-600/10 duration-100 px-3 py-2 rounded"
+            class="flex flex-col sm:flex-row sm:shrink-0 w-full items-center justify-center sm:gap-2 hover:bg-indigo-600/10 duration-100 px-3 py-2 rounded"
           >
             <Icon
               class="h-5 w-5 text-indigo-700"
